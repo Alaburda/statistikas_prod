@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistikas</title>
+    <link>https://statistikas.lt/</link>
+      <atom:link href="https://statistikas.lt/index.xml" rel="self" type="application/rss+xml" />
+    <description>Statistikas</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://statistikas.lt/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_512x512_fill_lanczos_center_2.png</url>
+      <title>Statistikas</title>
+      <link>https://statistikas.lt/</link>
+    </image>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>https://statistikas.lt/talk/example-talk/</link>
+      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/talk/example-talk/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Wowchemy&amp;rsquo;s &lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Further event details, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;page elements&lt;/a&gt; such as image galleries, can be added to the body of this page.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chi-kvadrato ir Fisher tikslus testai</title>
+      <link>https://statistikas.lt/courses/statistika-r/chi-kvadratas/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/courses/statistika-r/chi-kvadratas/</guid>
+      <description>&lt;h2 id=&#34;kada-naudoti-chi-kvadrato-testą&#34;&gt;Kada naudoti Chi-kvadrato testą?&lt;/h2&gt;
+&lt;p&gt;Chi-kvadrato testas yra skirtas įvertinti, ar yra asociacija tarp dviejų kategorinių kintamųjų. Asociaciją vertiname pagal tai, kokia tikimybė gauti stebimus dažnius duomenyse, jeigu laikome, jog tarp kintamųjų asociacijos nėra. Žmogiškais terminais mes lyginame du scenarijus:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\(H_0\)&lt;/code&gt;: kintamieji yra nepriklausomi ir sąsajos tarp kategorinių kintamųjų nėra.
+&lt;code&gt;\(H_1\)&lt;/code&gt;: kintamieji yra susiję tarpusavyje. Žinodami vieno kintamojo vertę galime nuspėti kito kintamojo vertę.&lt;/p&gt;
+&lt;p&gt;Chi-kvadrato testas priima arba atmeta nulinę hipotezę lygindamas esamus dažnius su teoriniais dažniais, kurių tikėtumėmės. Chi-kvadrato testas grąžina dvi reikšmes: &lt;code&gt;\(\chi^2\)&lt;/code&gt; reikšmę ir atitinkamą p reikšmę, kuri nusako &lt;code&gt;\(\chi^2\)&lt;/code&gt; reikšmės vietą &lt;code&gt;\(\chi^2\)&lt;/code&gt; skirstinyje. Geriausia įsitikinti, kaip tai veikia su pavyzdžiu.&lt;/p&gt;
+&lt;h3 id=&#34;duomenys&#34;&gt;Duomenys&lt;/h3&gt;
+&lt;p&gt;Naudosime &lt;code&gt;iris&lt;/code&gt; duomenų rinkinį. Iš jo susikursime naują kategorinį kintamąjį &lt;code&gt;dydis&lt;/code&gt;, kuris suskirsto taurėlapius į didelius ir mažus pagal tai, ar jie didesni ar mažesni už medianą. Atliksime Chi-kvadrato testą tikrinti asociaciją tarp taurėlapių dydžio ir augalo rūšies.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(dplyr)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &#39;dplyr&#39; was built under R version 4.0.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &#39;dplyr&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;data &amp;lt;- iris %&amp;gt;% 
+  mutate(dydis = case_when(Sepal.Length &amp;lt; median(Sepal.Length) ~ &amp;quot;Maži&amp;quot;,
+                          Sepal.Length &amp;gt;= median(Sepal.Length) ~ &amp;quot;Dideli&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Prieš nerdami į patį statistinį testą, gera praktika yra pavaizduoti turimus duomenis. Kintamųjų dažnius galime patikrinti suformuodami dažnių lentelę:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;table(data$dydis,data$Species)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         
+##          setosa versicolor virginica
+##   Dideli      1         29        47
+##   Maži       49         21         3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Taip pat su &lt;code&gt;ggplot2&lt;/code&gt; paketu galime duomenis pavaizduoti grafiškai:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggplot2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(data) +
+  aes(x = Species, fill = dydis) +
+  geom_bar(position = &amp;quot;fill&amp;quot;) + 
+  labs(x = &amp;quot;Augalo rūšis&amp;quot;,
+       y = &amp;quot;Augalų dalis&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/courses/statistika-R/chi-kvadratas_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Grafike ant x ašies matome augalo rūšį, o ant y ašies matome, kokia dalis matuotų augalų turėjo didelius arba mažus taurėlapius.&lt;/p&gt;
+&lt;p&gt;Kai matome, jog viskas yra gerai su duomenimis, galime atlikti Chi-kvadrato testą. Chi-kvadratui reikia pateikti tokią pačią dažnių lentelę, kokią kūrėme prieš tai:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;chisq.test(table(data$dydis,data$Species))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Pearson&#39;s Chi-squared test
+## 
+## data:  table(data$dydis, data$Species)
+## X-squared = 86.035, df = 2, p-value &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Galime prabėgti gautus rezultatus:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;X-squared yra Chi-kvadrato reikšmė&lt;/li&gt;
+&lt;li&gt;df yra laisvės laipsnių skaičius&lt;/li&gt;
+&lt;li&gt;p-value yra mūsų reikšmė&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Tinkamas būdas raportuoti duomenis būtų toks:&lt;/p&gt;
+&lt;p&gt;Atlikus Chi-kvadrato testą, sąsaja tarp taurėlapių dydžio ir augalo rūšies buvo statistiškai reikšminga ($\chi^2$(2) = 86,035, p &amp;lt; 0,001). Maži taurėlapiai buvo susiję su &lt;code&gt;setosa&lt;/code&gt; rūšimi, o dideli taurėlapiai su &lt;code&gt;virginica&lt;/code&gt; rūšimi.&lt;/p&gt;
+&lt;p&gt;p reikšmę mes raportuojame kaip mažesnę negu 0,001 dėl sutartinių normų - laisvai galėtume rašyti tokį patį rezultatą, kokį grąžina &lt;code&gt;chisq.test()&lt;/code&gt; funkcija, bet tai nebūtų informatyvu. Svarbiausia nerašyti, jog p = 0,00!&lt;/p&gt;
+&lt;h2 id=&#34;kada-nenaudoti-chi-kvadrato-testo&#34;&gt;Kada nenaudoti Chi-kvadrato testo?&lt;/h2&gt;
+&lt;p&gt;Kai vienas iš tikėtinų dažnių yra mažesnis negu 5, rekomenduojama arba sutraukti kelias grupes į vieną grupę, arba naudoti Fisher tikslų testą. Fisher tikslus testas po savimi neturi jokio statistinio testo savaime - jis apskaičiuoja tikimybę gauti tokius dažnius, kokius matome. Dėl to atlikdami testą su &lt;code&gt;fisher.test&lt;/code&gt; komanda gauname tik p reikšmę:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;fisher.test(table(data$dydis,data$Species))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Fisher&#39;s Exact Test for Count Data
+## 
+## data:  table(data$dydis, data$Species)
+## p-value &amp;lt; 2.2e-16
+## alternative hypothesis: two.sided
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Taip pat svarbu, jog Chi-kvadrato testas laikosi prielaidos, jog stebėjimai tarpusavyje nėra susiję. Nesunkiai prielaidą galima pažeisti atliekant odontologinį tyrimį. Pavyzdžiui, renkame informaciją apie sugedusius dantis ir tiriame sąsają tarp sugedusių dantų skaičiaus ir danties tipo. Jeigu įtraukiame po kelis dantis iš kiekvieno paciento, mes įtraukiame matavimus, kurie savaime jau yra susiję. Jeigu netyčia įtrauksime pacientą, kuriam sugedo daugiau negu 1 dantis, pažeistume testo prielaidą ir galimai gautume neteisingą rezultatą.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Kaip teisingai saugoti duomenis?</title>
+      <link>https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/</link>
+      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/</guid>
+      <description>
+&lt;script src=&#34;https://statistikas.lt/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Prieš kiekvieną tyrimą visada iškyla klausimas, kaip teisingai saugoti duomenis. Ar iškart viską vesti į SPSS, į Excel? Kaip suvesti informaciją apie paciento simptomus, jeigu jų pasireiškė daugiau negu vienas? Ar reikia viską koduoti skaičiais, o ne žodžiais? Šis įrašas paaiškina, kaip geriausia saugoti duomenis. Pagrindiniai principai: rašyti datas kaip YYYY-MM-DD, nepalikti tuščių laukų, saugoti vieną dalyką vienoje celėje, išsaugoti duomenis stačiakampėje struktūroje, susikurti duomenų žodyną, nekoduoti duomenų spalva, pasirinkti gerus pavadinimus, saugoti kopijas ir naudoti duomenų validavimą.&lt;/p&gt;
+&lt;div id=&#34;išlikite-nuoseklūs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Išlikite nuoseklūs&lt;/h2&gt;
+&lt;p&gt;Pati svarbiausia taisyklė - išlikti nuosekliems. Kad ir kaip renkatės vesti duomenis, svarbiausia yra laikytis tų pačių principų. Jeigu reikės duomenis vėliau tvarkyti, tai bus lengviau padaryti.&lt;/p&gt;
+&lt;p&gt;Kategoriniams kintamiesiems pasirinkite vienodus kodus. Jeigu į stulpelį vedate lytį, naudokite “vyras” vyrams ir “moteris” moterims. Arba “M” ir “F”, arba “V” ir “M”. Nerašykite į tą patį stulpelį kartais “M”, o kartais “moteris”. Pasirinkite vieną ir laikykitės pasirinkimo. Be to, kartais žmonės siūlo viską koduoti vienetais, nuliais ir pan., bet tai tikrai nėra būtina.&lt;/p&gt;
+&lt;p&gt;Trūkstamoms reikšmėms naudokite nuoseklią koduotę. Kai faile yra trūkstama reikšmė, visada iškyla klausimas, ar tai yra duomenų įvedimo klaida, ar tiesiog nėra duomenų. Vietoje tuščios celės, įprasti variantai yra “NA” arba “-”. Kai kurie žmonės naudoja 999 arba -999, bet atliekant analizes yra didesnė tikimybė neatkreipti į reikšmes dėmesio, todėl jų nerekomenduoju.&lt;/p&gt;
+&lt;p&gt;Stulpelių pavadinimai turi būti nuoseklūs. Jeigu turite kelis failus ir viename iš jų stulpelio pavadinimas yra “population_2005”, tada tikėtumėmės, jog tas pats stulpelis kituose failuose turėti irgi tokį pavadinimą. Nenaudokite skirtingų pavadinimų tam pačiam dalykui.&lt;/p&gt;
+&lt;p&gt;Datos turi būti standartizuotos. Geriausias formatas vienareikšmiškai yra YYYY-MM-DD (metai-mėnuo-diena). Jeigu pradėjote naudoti kitą datos formatą, laikykitės jo. Pavyzdžiui, viduryje duomenų vedimo nepradėkite naudoti taškelių vietoje brūkšnelių.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;geri-stulpelių-pavadinimai&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Geri stulpelių pavadinimai&lt;/h2&gt;
+&lt;p&gt;Geras stulpelio pavadinimas yra trumpas, bet informatyvus. Tai gali būti sudėtinga pataikyti, todėl verta šiek tiek pagalvoti prieš vedant duomenis. Kelios geros taisyklės: nenaudoti tarpų ir nenaudoti nestandartinių simbolių (lietuviškų raidžių, !, @, #, $, %, ^, &amp;amp;, *, (, ), / ir pan.). Tai yra svarbu analitikui, kuris dirba su duomenimis, nes jis nurodydamas stulpelio pavadinimą jį turės išskirti kabutėmis (priešingu atveju, “populiacija 2015” būtų suprasta kaip du atskiri stulpeliai).&lt;/p&gt;
+&lt;p&gt;Aišku, tai nereiškia, jog reikia laikytis griežtų klinikinių tyrimų standartų. Daug gerų ir blogų pavyzdžių galima rasti &lt;a href=&#34;https://datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/&#34;&gt;Data Carpentry puslapyje&lt;/a&gt;. Pavyzdžiui, respondento ar paciento lyties stulpelio pavadinimas turėtų būti “lytis”“, bet ne”m/f&#34;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;vengti-tuščių-laukelių&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Vengti tuščių laukelių&lt;/h2&gt;
+&lt;p&gt;Tuščias laukelis duomenų rinkinyje gali reikštis bent tris skirtingus dalykus. Tai gali būti duomenų įvedimo klaida, tai gali būti nuoroda, jog nebuvo nieko registruota rinkimo metu, arba tai gali būti tiesiog neįvestas nulis! Visi trys atvejai yra skirtingai sprendžiami, todėl svarbu užtikrinti, jog visos duomenų rinkinio celės yra užpildytos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;vienas-duomuo---vienas-laukelis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4. Vienas duomuo - vienas laukelis&lt;/h2&gt;
+&lt;p&gt;Iš principo duomenų rinkinyje viena eilutė turėtų būti vienas tiriamasis. Jeigu tiriamasis yra respondetas, tai turėtų būti vieno respondento atsakymai, o jeigu tiriamasis yra implantas, tuomet vienam implantui turėtų būti skiriama viena eilutė. Tai yra ypač aktualu, kai vienam pacientui yra įstatomi keli dantų implantai, o vertinamas yra implantas.&lt;/p&gt;
+&lt;p&gt;Dažnai apklausose galima renktis kelis atsakymus į klausimą arba pacientas turi kelias gretutines ligas. Vienas būdas yra kiekvienai gretutinei ligai skirti atskirą stulpelį ir nurodyti, ar pacientas ją turėjo (Taip/Ne, 1/0). Respondentų atvejų tai irgi įmanoma, bet gali smarkiai išpūsti stulpelių skaičių. Geriausia yra atskirti atsakymo variantus kokiu nors būdu (kableliu, kabletaškiu), jog po to būtų įmanoma programiškai juos išdalinti pagal skiriamąjį ženklą.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;laikytis-lentelės-struktūros&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;5. Laikytis lentelės struktūros&lt;/h2&gt;
+&lt;p&gt;Esu matęs atvejų, kai duomenys jau yra agreguoti. Su tokiais duomenimis teoriškai galima atlikti analizę, tačiau ji bus apribota ir įprastai užtruks ilgiau negu dirbant su standartine lentele. Tikslumo dėlei, štai ką turiu omenyje (&lt;a href=&#34;https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989&#34;&gt;šaltinis&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/blog/blog-post-1_files/utas_a_1375989_f0004_b.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mano-atvejis-kitoks&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mano atvejis kitoks!&lt;/h2&gt;
+&lt;p&gt;Jeigu kyla problemų vedant duomenis, visada geriausia pasitarti su žmogumi, kuris atlieka duomenų analizes ir gali patarti duomenų įvesties klausimais. Taip pat rekomenduoju perskaityti šiuos straipsnius:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989&#34;&gt;Data Organization in Spreadsheets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/&#34;&gt;Data Carpentry puslapis apie excelius&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Kaip atlikti išgyvenamumo analizę?</title>
+      <link>https://statistikas.lt/2021/02/07/kaip-atlikti-isgyvenamumo-analize/</link>
+      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/2021/02/07/kaip-atlikti-isgyvenamumo-analize/</guid>
+      <description>
+&lt;script src=&#34;https://statistikas.lt/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Išgyvenamumo analizė yra labai universalus įrankis. Tokia analizė reikalinga atvejais, kai mūsų tyrimo klausimas prasideda žodžiais “&lt;strong&gt;kada&lt;/strong&gt;” arba “&lt;strong&gt;kiek laiko&lt;/strong&gt;”. Dažniausiai išgyvenamumo analizė taikoma tiriant onkologinių pacientų išeitis, bet tais pačiais metodais galima įvertinti, kiek laiko dantų implantas išliks nesugedęs, kada reikėtų keisti detalę, kiek įprastai parduotuvėje lankosi vartotojas ar kada darbuotojai keičia darbą. R turi platų bibliotekų arsenalą, kuriuo atlikti tokią analizę yra paprasta.&lt;/p&gt;
+&lt;div id=&#34;įrankiai&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Įrankiai&lt;/h2&gt;
+&lt;p&gt;Išgyvenamumo analizei atlikti yra sukurta daug bibliotekų, bet daugiausia dėmesio skirsime šiems paketams:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;survival&lt;/code&gt; - skirtas atlikti pagrindines išgyvenamumo analizes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;survminer&lt;/code&gt; - grafikų biblioteka&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;survival&lt;/code&gt; paketas yra kertinis akmuo. Šio paketo &lt;code&gt;Surv()&lt;/code&gt; funkcija sukuria objektus, kuriuos galima pateikti Kaplan-Meier modeliui ar Cox regresijai, sukurti prognostinius modelius (&lt;code&gt;ranger&lt;/code&gt; paketas) ar parengti grafikus (&lt;code&gt;survminer&lt;/code&gt; paketas).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;užkrauname-duomenis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Užkrauname duomenis&lt;/h2&gt;
+&lt;p&gt;Pirma turime užsikrauti reikalingas R bibliotekas ir duomenis iš &lt;code&gt;survival&lt;/code&gt; bibliotekos. Ji viduje turi &lt;code&gt;veteran&lt;/code&gt; duomenų rinkinį, kurį panaudosime analizei.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::opts_chunk$set(warning = FALSE)
+
+library(survival)
+library(ggplot2)
+library(survminer)
+library(ranger)
+library(knitr)
+library(SemiCompRisks)
+library(dplyr)
+
+data(veteran)
+
+kable(head(veteran))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;trt&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;celltype&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;time&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;status&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;karno&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;diagtime&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;age&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;prior&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;72&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;69&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;411&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;70&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;64&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;228&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;38&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;126&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;63&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;118&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;70&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;squamous&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;49&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Duomenų rinkinys paremtas studija “Veterans’ Administration Lung Cancer”, duomenų rinkinio stulpelių reikšmės&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;trt: 1 = kontrolinė grupė, 2 = intervencinė grupė&lt;/li&gt;
+&lt;li&gt;celltype: 1 = plokščių ląstelių karcinoma, 2 = adenokarcinoma, 3 = stambių ląstelių karcinoma&lt;/li&gt;
+&lt;li&gt;time: išgyventų dienų skaičius&lt;/li&gt;
+&lt;li&gt;status: paciento statusas (gyvas/miręs)&lt;/li&gt;
+&lt;li&gt;karno: Karnofsky prognostinis įvertis (100=gerai)&lt;/li&gt;
+&lt;li&gt;diagtime: mėnesių skaičius nuo diagnozės iki randomizacijos&lt;/li&gt;
+&lt;li&gt;age: amžius, metais&lt;/li&gt;
+&lt;li&gt;prior: ankstesnė terapija skirta, 0 = ne, 10 = taip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;kaplan-meier-analizė&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Kaplan-Meier analizė&lt;/h2&gt;
+&lt;p&gt;Kiekvieno išgyvenamumo analizės pagrindas yra &lt;code&gt;Surv()&lt;/code&gt; objektas, mūsų atveju tai yra paciento statuso ir išgyvento laiko santykis. &lt;code&gt;Surv()&lt;/code&gt; objektas priima laiką ir galutinį statusą kaip argumentus, pavyzdžiui: &lt;code&gt;Surv(time, status)&lt;/code&gt;. Nuo čia galime atsispirti, nes iš pradžių tiesiog galime įvertinti bendrą išgyvenamumą be jokių nepriklausomų kintamųjų:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;km_fit_1 &amp;lt;- survfit(Surv(time, status) ~ 1, data = veteran)
+
+km_fit_1_summary &amp;lt;- summary(km_fit_1, times = c(1,30,60,90*(1:10)))
+
+print(km_fit_1_summary)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Call: survfit(formula = Surv(time, status) ~ 1, data = veteran)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     1    137       2    0.985  0.0102      0.96552       1.0000
+##    30     97      39    0.700  0.0392      0.62774       0.7816
+##    60     73      22    0.538  0.0427      0.46070       0.6288
+##    90     62      10    0.464  0.0428      0.38731       0.5560
+##   180     27      30    0.222  0.0369      0.16066       0.3079
+##   270     16       9    0.144  0.0319      0.09338       0.2223
+##   360     10       6    0.090  0.0265      0.05061       0.1602
+##   450      5       5    0.045  0.0194      0.01931       0.1049
+##   540      4       1    0.036  0.0175      0.01389       0.0934
+##   630      2       2    0.018  0.0126      0.00459       0.0707
+##   720      2       0    0.018  0.0126      0.00459       0.0707
+##   810      2       0    0.018  0.0126      0.00459       0.0707
+##   900      2       0    0.018  0.0126      0.00459       0.0707&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsurvplot(km_fit_1, 
+           data = veteran,
+           pval = TRUE,
+           xlab = &amp;quot;Laikas, dienomis&amp;quot;,
+           ylab = &amp;quot;Išgyvenamumo tikimybė&amp;quot;,
+           ggtheme = theme_bw()
+           )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/post/2021-03-09-kaip-atlikti-isgyvenamumo-analize/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;n-metų-išgyvenamumas&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;N-metų išgyvenamumas&lt;/h2&gt;
+&lt;p&gt;Išgyvenamumo analizėse dažnai aktualu išgyvenamumas po tam tikro laikotarpio. Pavyzdžiui, vienerių metų išgyvenamumą galime apskaičiuoti taip:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(km_fit_1, times = 365.25)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Call: survfit(formula = Surv(time, status) ~ 1, data = veteran)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##   365     10     118     0.09  0.0265       0.0506         0.16&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vienerių metų išgyvenamumas yra devyni procentai. Kartu pateiktas 95% pasikliautinumo intervalas, kuris rodo, jog išgyvenamumas svyruoja nuo 5 iki 16 procentų.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;išgyvento-laiko-mediana&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Išgyvento laiko mediana&lt;/h2&gt;
+&lt;p&gt;Antras svarbus skaičius analizuojant išgyvenamumą yra vidutinis išggyventas laikas, kuris yra matuojamas mediana. Visi taikomi metodai yra neparametriniai, t.y. jie neturi prielaidos, jog duomenys yra kaip nors pasiskirstę. Juo labiau, mediana yra patogi tuo, jog ji taip pat įvardina, kiek laiko išgyvena 50% pacientų.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;km_fit_1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Call: survfit(formula = Surv(time, status) ~ 1, data = veteran)
+## 
+##       n  events  median 0.95LCL 0.95UCL 
+##     137     128      80      52     105&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vidutinis išgyvenamumas yra 80 dienų, apatinis ir viršutinis pasikliautinojo intervalo rėžis taip pat pateiktas (nuo 52 ir 105 dienų).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;palyginimas-tarp-grupių&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Palyginimas tarp grupių&lt;/h2&gt;
+&lt;p&gt;Dažniausiai išgyvenamumo analizė atliekama su tikslu įvertinti, ar kuris nors kintamasis turėjo įtakos galutiniam išgyvenamumui arba išgyvenamumo laikui. Šiame duomenų rinkinyje pagal stulpelį &lt;code&gt;trt&lt;/code&gt; pacientus galime išskaidyti į kontrolinę ir intervencinę grupes:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;km_fit_2 &amp;lt;- survfit(Surv(time, status) ~ trt, data=veteran)
+
+
+ggsurvplot(km_fit_2, 
+           data = veteran,
+           pval = TRUE,
+           xlab = &amp;quot;Laikas, dienomis&amp;quot;,
+           ylab = &amp;quot;Išgyvenamumo tikimybė&amp;quot;,
+           ggtheme = theme_bw()
+           )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/post/2021-03-09-kaip-atlikti-isgyvenamumo-analize/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Grafiškai panašu, jog gydymas padėjo kai kuriems pacientams ilgiau išgyventi, tačiau matome, jog iš pradžių pacientų išeitys yra geresnės kontrolinėje grupėje. &lt;code&gt;ggsurvplot&lt;/code&gt; iškart atlieka log-ranginį testą ir pateikia p reikšmę viduje grafiko, taip matome, jog skirtumas tarp kontrolinės ir intervencinės grupės nebuvo statistiškai reikšmingas.&lt;/p&gt;
+&lt;p&gt;Log-ranginį testą taip pat galima atlikti taip (visa formulė liko tokia pati, tiesiog ją perdaviau į kitą funkciją):&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;survdiff(Surv(time, status) ~ trt, data=veteran)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Call:
+## survdiff(formula = Surv(time, status) ~ trt, data = veteran)
+## 
+##        N Observed Expected (O-E)^2/E (O-E)^2/V
+## trt=1 69       64     64.5   0.00388   0.00823
+## trt=2 68       64     63.5   0.00394   0.00823
+## 
+##  Chisq= 0  on 1 degrees of freedom, p= 0.9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Matome tokią pačią p reikšmę ir šiek tiek daugiau informacijos apie testo rezultatus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cox-regresijos-modelis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cox regresijos modelis&lt;/h2&gt;
+&lt;p&gt;Vien atsakymo, jog skirtumas yra statistiškai reikšmingas, ne visada užtenka. Kai norime apskaičiuoti skirtumo dydį, galime pritaikyti Cox regresiją.&lt;/p&gt;
+&lt;p&gt;Cox regresijos modelis yra pusiau parametrinis modelis, kurį su &lt;code&gt;coxph&lt;/code&gt; funkcija galime paleisti taip (broom funkcija taikome, jog iškart turėtume interpretuojamus koeficientus):&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cox_model_1 &amp;lt;- coxph(Surv(time, status) ~ trt, data=veteran)
+
+cox_model_1 %&amp;gt;% 
+  broom::tidy(exp = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 5
+##   term  estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 trt       1.02     0.181    0.0982   0.922&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cox regresija įvertina &lt;strong&gt;Rizikos santykį (HR)&lt;/strong&gt;. HR nurodo rizikų santykį tarp dviejų grupių bet kuriame laiko taške. Tai savaime nėra rizika, o įvykio dažnis palyginus su lyginamąja grupe. Šiuo atveju mes vertinome riziką intervencinėje grupėje santykiu su kontroline grupe, todėl bet kuriuo metu pacientai turėjo 1,7% didesnę riziką mirti negu kontrolinėje grupėje. Mes nenusakome konkretaus mirties dažnio, o nusakome, kaip jis keičiasi. Jeigu HR &amp;gt; 1, rizika grupėje didesnė, jeigu &amp;lt; 1, tuomet rizika yra mažesnė.&lt;/p&gt;
+&lt;p&gt;Cox regresiją taip pat galima validuoti su &lt;em&gt;Schoenfeld residual&lt;/em&gt;, kuris patikrina, ar proporcingų rizikų prielaida buvo išlaikyta&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;. cox.zph() funkcija leidžia įvertinti, ar likutinės regresijos modelio vertės nepriklauso nuo laiko. Statistiškai reikšmingas testas atmestų prielaidų ir negalėtume laikyti, jog testas buvo pritaikytas teisingai.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(ph_check &amp;lt;- survival::cox.zph(cox_model_1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        chisq df    p
+## trt     3.54  1 0.06
+## GLOBAL  3.54  1 0.06&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;P reikšmė maža, bet proporcingų rizikų prielaida negali būti atmesta. Vizualiai galime įvertinti rezultatus su &lt;code&gt;ggcoxzph()&lt;/code&gt; funkcija:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;survminer::ggcoxzph(ph_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/post/2021-03-09-kaip-atlikti-isgyvenamumo-analize/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Kadangi su mūsų vieno nepriklausomo kintamojo modeliu viskas gerai, galime pateikti kauptinę riziką:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsurvplot(km_fit_2, 
+           data = veteran,
+           pval = TRUE,
+           xlab = &amp;quot;Laikas, dienomis&amp;quot;,
+           ylab = &amp;quot;Kauptinė rizika&amp;quot;,
+           ggtheme = theme_bw(),
+           fun = &amp;quot;cumhaz&amp;quot;
+           )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://statistikas.lt/post/2021-03-09-kaip-atlikti-isgyvenamumo-analize/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;landmark-analizė&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Landmark analizė&lt;/h2&gt;
+&lt;p&gt;Yra atvejų, kai log ranginiai ir Cox regresijos testai nebūtinai gali būti teisingi. Klinikiniuose tyrimuose po gydymo skyrimo tolesni vizitai būna suplanuoti į priekį ir apie paciento statusą sužinome per vizitą, tačiau atlikdami Cox proporcinių rizikų regresiją primetame, jog pacientų statusą žinome nuo t = 0, kai iš tikrųjų apie paciento galutinį statusą iš pradžių nežinome (t.y. visi pacientai iš pradžių yra gyvi!). Panaši problema gali iškilti su klinikiniais tyrimais, kai pacientai yra įtraukimi į gydymo grupę ir jų išgyventas laikas skaičiuojamas dar prieš jiems gaunant gydymą. Tai pagerina intervencinės grupės statistiką ir leidžia klaidingai teigti, jog gydymas buvo sėkmingas&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Landmark metodas išvengia šališkumo parinkdamas naują atskaitos tašką laike. Taip pat tai reiškia, jog kai kurie pacientai nebus įtraukti į analizę, todėl raportuojant būtina paminėti, kiek pacientų buvo neįtraukta į studiją. Iliustruoti šį pavyzdį naudosime BMT duomenų rinkinį. Tai yra 137 pacientų, kuriems buvo persodinti kaulų čiulpai, duomenų rinkinys. Naudosime šiuos kintamuosius:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;T1&lt;/code&gt; yra laikas iki mirties arba paskutinio vizito&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;delta1&lt;/code&gt; paciento statusas; 1 - miręs, 1 - gyvas&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TA&lt;/code&gt; laikas iki ūmios transplantato prieš šeiminką ligos&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deltaA&lt;/code&gt; žymė, ar išsivystė ūmi transplantato prieš šeiminką liga&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Užsikrauname duomenis:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(BMT, package = &amp;quot;SemiCompRisks&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Naudojame naują duomenų rinkinį, nes jame turime aiškų laikotarpį, kiek laiko reikia tikėtis ligos - 90 dienų. Laikotarpis bus kitoks, priklausomai nuo tyrimo konteksto.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm_dat &amp;lt;- 
+  BMT %&amp;gt;% 
+  filter(T1 &amp;gt;= 90) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tokiu būdu atmetame 15 pacientų - tai yra pacientai, kurie mirė iki 90 dienų laikotarpio. Jeigu mus domina ryšys tarp atmetimo ir išgyvenamumo, mes turime vertinti išgyvenamumą ne nuo transplanto datos (kada pacientai tikrai negalėjo turėti atmetimo reakcijos), o nuo ligos datos. Dėl to išgyventą laiką skaičiuosime nuo 90 dienų, nes tuo metu mes esame užtikrinti, kurie pacientai serga liga, o kurie - ne:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm_dat &amp;lt;- 
+  lm_dat %&amp;gt;% 
+  mutate(
+    lm_T1 = T1 - 90
+    )
+
+lm_fit &amp;lt;- survfit(Surv(lm_T1, delta1) ~ deltaA, data = lm_dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cox regresijos funkcija &lt;code&gt;coxph()&lt;/code&gt; turi patogų argumentą “subset”, kuris leidžia filtruoti duomenis:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coxph(
+  Surv(T1, delta1) ~ deltaA, 
+  subset = T1 &amp;gt;= 90, 
+  data = BMT
+  ) %&amp;gt;% 
+  gtsummary::tbl_regression(exp = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#uecyzongow .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uecyzongow .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uecyzongow .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uecyzongow .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uecyzongow .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uecyzongow .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uecyzongow .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uecyzongow .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uecyzongow .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uecyzongow .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uecyzongow .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uecyzongow .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uecyzongow .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uecyzongow .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#uecyzongow .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#uecyzongow .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uecyzongow .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#uecyzongow .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uecyzongow .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#uecyzongow .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uecyzongow .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uecyzongow .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uecyzongow .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uecyzongow .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uecyzongow .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#uecyzongow .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uecyzongow .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#uecyzongow .gt_left {
+  text-align: left;
+}
+
+#uecyzongow .gt_center {
+  text-align: center;
+}
+
+#uecyzongow .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uecyzongow .gt_font_normal {
+  font-weight: normal;
+}
+
+#uecyzongow .gt_font_bold {
+  font-weight: bold;
+}
+
+#uecyzongow .gt_font_italic {
+  font-style: italic;
+}
+
+#uecyzongow .gt_super {
+  font-size: 65%;
+}
+
+#uecyzongow .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;uecyzongow&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;Characteristic&lt;/strong&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;HR&lt;/strong&gt;&lt;sup class=&#34;gt_footnote_marks&#34;&gt;1&lt;/sup&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;95% CI&lt;/strong&gt;&lt;sup class=&#34;gt_footnote_marks&#34;&gt;1&lt;/sup&gt;&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;&lt;strong&gt;p-value&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt;deltaA&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;1.08&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;0.57, 2.07&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;0.8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  &lt;tfoot&gt;
+    &lt;tr class=&#34;gt_footnotes&#34;&gt;
+      &lt;td colspan=&#34;4&#34;&gt;
+        &lt;p class=&#34;gt_footnote&#34;&gt;
+          &lt;sup class=&#34;gt_footnote_marks&#34;&gt;
+            &lt;em&gt;1&lt;/em&gt;
+          &lt;/sup&gt;
+           
+          HR = Hazard Ratio, CI = Confidence Interval
+          &lt;br /&gt;
+        &lt;/p&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;daugiau-informacijos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Daugiau informacijos&lt;/h2&gt;
+&lt;p&gt;Daugiau apie išgyvenamumo analitiką galima rasti čia:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html&#34;&gt;Survival Analysis in R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://oxford.universitypressscholarship.com/view/10.1093/acprof:oso/9780195152968.001.0001/acprof-9780195152968&#34;&gt;Applied Longitudinal Data Analysis: Modeling Change and Event Occurence&lt;/a&gt; ir &lt;a href=&#34;https://bookdown.org/content/4253/describing-discrete-time-event-occurrence-data.html&#34;&gt;knyga, kuri pateikia pavyzdinį kodą&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hranalyticslive.netlify.app/&#34;&gt;HR Analytics in R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://peopleanalytics-regression-book.org/survival.html&#34;&gt;Handbook of Regression Modeling in People Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://stat.ethz.ch/R-manual/R-devel/library/survival/html/veteran.html&#34; class=&#34;uri&#34;&gt;https://stat.ethz.ch/R-manual/R-devel/library/survival/html/veteran.html&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Ankstesnėje pastraipoje didesnės rizikos procentas tinkamas bet kuriame taške laike, nes tai yra regresijos prielaida.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Daugiau apie šią problemą galima rasti šiame &lt;a href=&#34;https://www.bmj.com/content/340/bmj.b5087&#34;&gt;straipsnyje apie statinus&lt;/a&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>https://statistikas.lt/slides/example/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/slides/example/</guid>
+      <description>&lt;h1 id=&#34;create-slides-in-markdown-with-wowchemy&#34;&gt;Create slides in Markdown with Wowchemy&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wowchemy&lt;/a&gt; | &lt;a href=&#34;https://owchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Code block:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+&lt;p&gt;Block math:&lt;/p&gt;
+&lt;p&gt;$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+Three
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/media/boards.jpg&#34;
+  &gt;
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/media/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/discussions&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Project</title>
+      <link>https://statistikas.lt/project/example/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/project/example/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>https://statistikas.lt/publication/example/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/publication/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://statistikas.lt/admin/config.yml</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://statistikas.lt/admin/config.yml</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1291 @@
+<!DOCTYPE html><html lang="en" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Paulius Alaburda" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Prieš kiekvieną tyrimą visada iškyla klausimas, kaip teisingai saugoti duomenis. Ar iškart viską vesti į SPSS, į Excel? Kaip suvesti informaciją apie paciento simptomus, jeigu jų pasireiškė daugiau negu vienas?" />
+
+  
+  <link rel="alternate" hreflang="en" href="https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#2F3764" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto+Mono&family=Roboto:wght@300&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto+Mono&family=Roboto:wght@300&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.a941fa0dbde5e64b061514732130869d.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-189143451-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-189143451-1', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+<script>
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", '5nfz8exqp2');
+</script>
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@p_alab" />
+    <meta property="twitter:creator" content="@p_alab" />
+  
+  <meta property="og:site_name" content="Statistikas" />
+  <meta property="og:url" content="https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/" />
+  <meta property="og:title" content="Kaip teisingai saugoti duomenis? | Statistikas" />
+  <meta property="og:description" content="Prieš kiekvieną tyrimą visada iškyla klausimas, kaip teisingai saugoti duomenis. Ar iškart viską vesti į SPSS, į Excel? Kaip suvesti informaciją apie paciento simptomus, jeigu jų pasireiškė daugiau negu vienas?" /><meta property="og:image" content="https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/featured.jpg" />
+    <meta property="twitter:image" content="https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/featured.jpg" /><meta property="og:locale" content="en" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-03-12T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-03-12T11:52:23&#43;02:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/"
+  },
+  "headline": "Kaip teisingai saugoti duomenis?",
+  
+  "image": [
+    "https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/featured.jpg"
+  ],
+  
+  "datePublished": "2021-03-12T00:00:00Z",
+  "dateModified": "2021-03-12T11:52:23+02:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Paulius Alaburda"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Statistikas",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://statistikas.lt/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Prieš kiekvieną tyrimą visada iškyla klausimas, kaip teisingai saugoti duomenis. Ar iškart viską vesti į SPSS, į Excel? Kaip suvesti informaciją apie paciento simptomus, jeigu jų pasireiškė daugiau negu vienas?"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Kaip teisingai saugoti duomenis? | Statistikas</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6d0cca5d0efc4fb8f1f37b79df338cbd" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.eca9bbc7a71accd5ebd9eee0ff004132.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Paieška</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Ieškoti..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Ieškoti...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Statistikas</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Perjungti navigaciją">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Statistikas</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#hero"><span>Pagrindinis</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/authors/admin"><span>Apie</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Paslaugos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Kursai</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/courses/duomenu-mokslas-r/"><span>Duomenų mokslas su R</span></a>
+            
+              <a class="dropdown-item" href="/courses/statistika-r/"><span>Statistika su R</span></a>
+            
+              <a class="dropdown-item" href="/courses/izanga-r/"><span>Įžanga į R</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blogas</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Susisiekti</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Paieška"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Šviesus</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Tamsus</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatinis</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Kaip teisingai saugoti duomenis?</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Vėliausiai atnaujinti
+      
+    
+    2021-03-12
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 minučių skaitymo
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header container-fluid featured-image-wrapper mt-4 mb-4" style="max-width: 1919px; max-height: 393px;">
+  <div style="position: relative">
+    <img src="/2021/03/12/kaip-teisingai-saugoti-duomenis/featured.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Prieš kiekvieną tyrimą visada iškyla klausimas, kaip teisingai saugoti duomenis. Ar iškart viską vesti į SPSS, į Excel? Kaip suvesti informaciją apie paciento simptomus, jeigu jų pasireiškė daugiau negu vienas? Ar reikia viską koduoti skaičiais, o ne žodžiais? Šis įrašas paaiškina, kaip geriausia saugoti duomenis. Pagrindiniai principai: rašyti datas kaip YYYY-MM-DD, nepalikti tuščių laukų, saugoti vieną dalyką vienoje celėje, išsaugoti duomenis stačiakampėje struktūroje, susikurti duomenų žodyną, nekoduoti duomenų spalva, pasirinkti gerus pavadinimus, saugoti kopijas ir naudoti duomenų validavimą.</p>
+<div id="išlikite-nuoseklūs" class="section level2">
+<h2>1. Išlikite nuoseklūs</h2>
+<p>Pati svarbiausia taisyklė - išlikti nuosekliems. Kad ir kaip renkatės vesti duomenis, svarbiausia yra laikytis tų pačių principų. Jeigu reikės duomenis vėliau tvarkyti, tai bus lengviau padaryti.</p>
+<p>Kategoriniams kintamiesiems pasirinkite vienodus kodus. Jeigu į stulpelį vedate lytį, naudokite “vyras” vyrams ir “moteris” moterims. Arba “M” ir “F”, arba “V” ir “M”. Nerašykite į tą patį stulpelį kartais “M”, o kartais “moteris”. Pasirinkite vieną ir laikykitės pasirinkimo. Be to, kartais žmonės siūlo viską koduoti vienetais, nuliais ir pan., bet tai tikrai nėra būtina.</p>
+<p>Trūkstamoms reikšmėms naudokite nuoseklią koduotę. Kai faile yra trūkstama reikšmė, visada iškyla klausimas, ar tai yra duomenų įvedimo klaida, ar tiesiog nėra duomenų. Vietoje tuščios celės, įprasti variantai yra “NA” arba “-”. Kai kurie žmonės naudoja 999 arba -999, bet atliekant analizes yra didesnė tikimybė neatkreipti į reikšmes dėmesio, todėl jų nerekomenduoju.</p>
+<p>Stulpelių pavadinimai turi būti nuoseklūs. Jeigu turite kelis failus ir viename iš jų stulpelio pavadinimas yra “population_2005”, tada tikėtumėmės, jog tas pats stulpelis kituose failuose turėti irgi tokį pavadinimą. Nenaudokite skirtingų pavadinimų tam pačiam dalykui.</p>
+<p>Datos turi būti standartizuotos. Geriausias formatas vienareikšmiškai yra YYYY-MM-DD (metai-mėnuo-diena). Jeigu pradėjote naudoti kitą datos formatą, laikykitės jo. Pavyzdžiui, viduryje duomenų vedimo nepradėkite naudoti taškelių vietoje brūkšnelių.</p>
+</div>
+<div id="geri-stulpelių-pavadinimai" class="section level2">
+<h2>2. Geri stulpelių pavadinimai</h2>
+<p>Geras stulpelio pavadinimas yra trumpas, bet informatyvus. Tai gali būti sudėtinga pataikyti, todėl verta šiek tiek pagalvoti prieš vedant duomenis. Kelios geros taisyklės: nenaudoti tarpų ir nenaudoti nestandartinių simbolių (lietuviškų raidžių, !, @, #, $, %, ^, &amp;, *, (, ), / ir pan.). Tai yra svarbu analitikui, kuris dirba su duomenimis, nes jis nurodydamas stulpelio pavadinimą jį turės išskirti kabutėmis (priešingu atveju, “populiacija 2015” būtų suprasta kaip du atskiri stulpeliai).</p>
+<p>Aišku, tai nereiškia, jog reikia laikytis griežtų klinikinių tyrimų standartų. Daug gerų ir blogų pavyzdžių galima rasti <a href="https://datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/">Data Carpentry puslapyje</a>. Pavyzdžiui, respondento ar paciento lyties stulpelio pavadinimas turėtų būti “lytis”“, bet ne”m/f".</p>
+</div>
+<div id="vengti-tuščių-laukelių" class="section level2">
+<h2>3. Vengti tuščių laukelių</h2>
+<p>Tuščias laukelis duomenų rinkinyje gali reikštis bent tris skirtingus dalykus. Tai gali būti duomenų įvedimo klaida, tai gali būti nuoroda, jog nebuvo nieko registruota rinkimo metu, arba tai gali būti tiesiog neįvestas nulis! Visi trys atvejai yra skirtingai sprendžiami, todėl svarbu užtikrinti, jog visos duomenų rinkinio celės yra užpildytos.</p>
+</div>
+<div id="vienas-duomuo---vienas-laukelis" class="section level2">
+<h2>4. Vienas duomuo - vienas laukelis</h2>
+<p>Iš principo duomenų rinkinyje viena eilutė turėtų būti vienas tiriamasis. Jeigu tiriamasis yra respondetas, tai turėtų būti vieno respondento atsakymai, o jeigu tiriamasis yra implantas, tuomet vienam implantui turėtų būti skiriama viena eilutė. Tai yra ypač aktualu, kai vienam pacientui yra įstatomi keli dantų implantai, o vertinamas yra implantas.</p>
+<p>Dažnai apklausose galima renktis kelis atsakymus į klausimą arba pacientas turi kelias gretutines ligas. Vienas būdas yra kiekvienai gretutinei ligai skirti atskirą stulpelį ir nurodyti, ar pacientas ją turėjo (Taip/Ne, 1/0). Respondentų atvejų tai irgi įmanoma, bet gali smarkiai išpūsti stulpelių skaičių. Geriausia yra atskirti atsakymo variantus kokiu nors būdu (kableliu, kabletaškiu), jog po to būtų įmanoma programiškai juos išdalinti pagal skiriamąjį ženklą.</p>
+</div>
+<div id="laikytis-lentelės-struktūros" class="section level2">
+<h2>5. Laikytis lentelės struktūros</h2>
+<p>Esu matęs atvejų, kai duomenys jau yra agreguoti. Su tokiais duomenimis teoriškai galima atlikti analizę, tačiau ji bus apribota ir įprastai užtruks ilgiau negu dirbant su standartine lentele. Tikslumo dėlei, štai ką turiu omenyje (<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989">šaltinis</a>):</p>
+<p><img src="/blog/blog-post-1_files/utas_a_1375989_f0004_b.jpeg" /></p>
+</div>
+<div id="mano-atvejis-kitoks" class="section level2">
+<h2>Mano atvejis kitoks!</h2>
+<p>Jeigu kyla problemų vedant duomenis, visada geriausia pasitarti su žmogumi, kuris atlieka duomenų analizes ir gali patarti duomenų įvesties klausimais. Taip pat rekomenduoju perskaityti šiuos straipsnius:</p>
+<ul>
+<li><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989">Data Organization in Spreadsheets</a></li>
+<li><a href="https://datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/">Data Carpentry puslapis apie excelius</a></li>
+</ul>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/&amp;text=Kaip%20teisingai%20saugoti%20duomenis?" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/&amp;t=Kaip%20teisingai%20saugoti%20duomenis?" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/&amp;title=Kaip%20teisingai%20saugoti%20duomenis?" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://statistikas.lt/2021/03/12/kaip-teisingai-saugoti-duomenis/&amp;title=Kaip%20teisingai%20saugoti%20duomenis?" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://statistikas.lt/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu632ae25a0e1b4cebfeba92eec91d5c4b_1362635_270x270_fill_q75_lanczos_center.jpg" alt="Paulius Alaburda"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://statistikas.lt/">Paulius Alaburda</a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/pauliusalaburda" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citata</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Kopijuoti
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Parsisiųsti
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.c8812054d5fbbc54489d1801db0a0e44.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

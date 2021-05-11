@@ -1,0 +1,1166 @@
+<!DOCTYPE html><html lang="en" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Paulius Alaburda" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Kada naudoti Chi-kvadrato testą? Chi-kvadrato testas yra skirtas įvertinti, ar yra asociacija tarp dviejų kategorinių kintamųjų. Asociaciją vertiname pagal tai, kokia tikimybė gauti stebimus dažnius duomenyse, jeigu laikome, jog tarp kintamųjų asociacijos nėra." />
+
+  
+  <link rel="alternate" hreflang="en" href="https://statistikas.lt/courses/statistika-r/chi-kvadratas/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#2F3764" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto+Mono&family=Roboto:wght@300&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto+Mono&family=Roboto:wght@300&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.a941fa0dbde5e64b061514732130869d.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-189143451-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-189143451-1', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+<script>
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", '5nfz8exqp2');
+</script>
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://statistikas.lt/courses/statistika-r/chi-kvadratas/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+    <meta property="twitter:site" content="@p_alab" />
+    <meta property="twitter:creator" content="@p_alab" />
+  
+  <meta property="og:site_name" content="Statistikas" />
+  <meta property="og:url" content="https://statistikas.lt/courses/statistika-r/chi-kvadratas/" />
+  <meta property="og:title" content="Chi-kvadrato ir Fisher tikslus testai | Statistikas" />
+  <meta property="og:description" content="Kada naudoti Chi-kvadrato testą? Chi-kvadrato testas yra skirtas įvertinti, ar yra asociacija tarp dviejų kategorinių kintamųjų. Asociaciją vertiname pagal tai, kokia tikimybė gauti stebimus dažnius duomenyse, jeigu laikome, jog tarp kintamųjų asociacijos nėra." /><meta property="og:image" content="https://statistikas.lt/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://statistikas.lt/media/icon_hue308ddb4cad272f752f75ed3ccd6174c_3020_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-05-11T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-05-11T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Chi-kvadrato ir Fisher tikslus testai | Statistikas</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="29aefaeb285f72d4c9269b90ddfbc685" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.eca9bbc7a71accd5ebd9eee0ff004132.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Paieška</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Ieškoti..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Ieškoti...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Statistikas</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Perjungti navigaciją">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Statistikas</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#hero"><span>Pagrindinis</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/authors/admin"><span>Apie</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Paslaugos</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Kursai</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/courses/duomenu-mokslas-r/"><span>Duomenų mokslas su R</span></a>
+            
+              <a class="dropdown-item" href="/courses/statistika-r/"><span>Statistika su R</span></a>
+            
+              <a class="dropdown-item" href="/courses/izanga-r/"><span>Įžanga į R</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blogas</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Susisiekti</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Paieška"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Šviesus</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Tamsus</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatinis</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+            
+
+
+
+
+
+  
+    
+  
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" placeholder="Ieškoti..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+
+  
+  
+  
+    
+  
+
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/courses/statistika-r/">Kursai</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/courses/statistika-r/">Testai</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/courses/statistika-r/chi-kvadratas/">Statistiniai testai</a>
+    <ul class="nav docs-sidenav">
+      
+      <li class="active">
+        <a href="/courses/statistika-r/chi-kvadratas/">Chi-kvadrato ir Fisher tikslus testai</a>
+      </li>
+
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+        </div>
+
+        
+        <div class="d-none d-xl-block col-xl-2 docs-toc">
+            <ul class="nav toc-top">
+                <li><a href="#" id="back_to_top" class="docs-toc-title">Turinys</a></li>
+            </ul>
+
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kada-naudoti-chi-kvadrato-testą">Kada naudoti Chi-kvadrato testą?</a>
+      <ul>
+        <li><a href="#duomenys">Duomenys</a></li>
+      </ul>
+    </li>
+    <li><a href="#kada-nenaudoti-chi-kvadrato-testo">Kada nenaudoti Chi-kvadrato testo?</a></li>
+  </ul>
+</nav>
+
+            
+        </div>
+        
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+            <article class="article">
+
+                <div class="docs-article-container">
+
+                        
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/courses/">
+      
+        Kursai
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/courses/statistika-r/">
+      
+        Testai
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        Chi-kvadrato ir Fisher tikslus testai
+      </li>
+    </ol>
+  </nav>
+
+
+
+                    <h1>Chi-kvadrato ir Fisher tikslus testai</h1>
+
+                    
+
+                    
+
+                    
+
+                    <div class="article-style">
+                        <h2 id="kada-naudoti-chi-kvadrato-testą">Kada naudoti Chi-kvadrato testą?</h2>
+<p>Chi-kvadrato testas yra skirtas įvertinti, ar yra asociacija tarp dviejų kategorinių kintamųjų. Asociaciją vertiname pagal tai, kokia tikimybė gauti stebimus dažnius duomenyse, jeigu laikome, jog tarp kintamųjų asociacijos nėra. Žmogiškais terminais mes lyginame du scenarijus:</p>
+<p><code>\(H_0\)</code>: kintamieji yra nepriklausomi ir sąsajos tarp kategorinių kintamųjų nėra.
+<code>\(H_1\)</code>: kintamieji yra susiję tarpusavyje. Žinodami vieno kintamojo vertę galime nuspėti kito kintamojo vertę.</p>
+<p>Chi-kvadrato testas priima arba atmeta nulinę hipotezę lygindamas esamus dažnius su teoriniais dažniais, kurių tikėtumėmės. Chi-kvadrato testas grąžina dvi reikšmes: <code>\(\chi^2\)</code> reikšmę ir atitinkamą p reikšmę, kuri nusako <code>\(\chi^2\)</code> reikšmės vietą <code>\(\chi^2\)</code> skirstinyje. Geriausia įsitikinti, kaip tai veikia su pavyzdžiu.</p>
+<h3 id="duomenys">Duomenys</h3>
+<p>Naudosime <code>iris</code> duomenų rinkinį. Iš jo susikursime naują kategorinį kintamąjį <code>dydis</code>, kuris suskirsto taurėlapius į didelius ir mažus pagal tai, ar jie didesni ar mažesni už medianą. Atliksime Chi-kvadrato testą tikrinti asociaciją tarp taurėlapių dydžio ir augalo rūšies.</p>
+<pre><code class="language-r">library(dplyr)
+</code></pre>
+<pre><code>## Warning: package 'dplyr' was built under R version 4.0.5
+</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'
+</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+</code></pre>
+<pre><code class="language-r">data &lt;- iris %&gt;% 
+  mutate(dydis = case_when(Sepal.Length &lt; median(Sepal.Length) ~ &quot;Maži&quot;,
+                          Sepal.Length &gt;= median(Sepal.Length) ~ &quot;Dideli&quot;))
+</code></pre>
+<p>Prieš nerdami į patį statistinį testą, gera praktika yra pavaizduoti turimus duomenis. Kintamųjų dažnius galime patikrinti suformuodami dažnių lentelę:</p>
+<pre><code class="language-r">table(data$dydis,data$Species)
+</code></pre>
+<pre><code>##         
+##          setosa versicolor virginica
+##   Dideli      1         29        47
+##   Maži       49         21         3
+</code></pre>
+<p>Taip pat su <code>ggplot2</code> paketu galime duomenis pavaizduoti grafiškai:</p>
+<pre><code class="language-r">library(ggplot2)
+</code></pre>
+<pre><code>## Warning: package 'ggplot2' was built under R version 4.0.5
+</code></pre>
+<pre><code class="language-r">ggplot(data) +
+  aes(x = Species, fill = dydis) +
+  geom_bar(position = &quot;fill&quot;) + 
+  labs(x = &quot;Augalo rūšis&quot;,
+       y = &quot;Augalų dalis&quot;)
+</code></pre>
+<p><img src="/courses/statistika-R/chi-kvadratas_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Grafike ant x ašies matome augalo rūšį, o ant y ašies matome, kokia dalis matuotų augalų turėjo didelius arba mažus taurėlapius.</p>
+<p>Kai matome, jog viskas yra gerai su duomenimis, galime atlikti Chi-kvadrato testą. Chi-kvadratui reikia pateikti tokią pačią dažnių lentelę, kokią kūrėme prieš tai:</p>
+<pre><code class="language-r">chisq.test(table(data$dydis,data$Species))
+</code></pre>
+<pre><code>## 
+## 	Pearson's Chi-squared test
+## 
+## data:  table(data$dydis, data$Species)
+## X-squared = 86.035, df = 2, p-value &lt; 2.2e-16
+</code></pre>
+<p>Galime prabėgti gautus rezultatus:</p>
+<ul>
+<li>X-squared yra Chi-kvadrato reikšmė</li>
+<li>df yra laisvės laipsnių skaičius</li>
+<li>p-value yra mūsų reikšmė</li>
+</ul>
+<p>Tinkamas būdas raportuoti duomenis būtų toks:</p>
+<p>Atlikus Chi-kvadrato testą, sąsaja tarp taurėlapių dydžio ir augalo rūšies buvo statistiškai reikšminga ($\chi^2$(2) = 86,035, p &lt; 0,001). Maži taurėlapiai buvo susiję su <code>setosa</code> rūšimi, o dideli taurėlapiai su <code>virginica</code> rūšimi.</p>
+<p>p reikšmę mes raportuojame kaip mažesnę negu 0,001 dėl sutartinių normų - laisvai galėtume rašyti tokį patį rezultatą, kokį grąžina <code>chisq.test()</code> funkcija, bet tai nebūtų informatyvu. Svarbiausia nerašyti, jog p = 0,00!</p>
+<h2 id="kada-nenaudoti-chi-kvadrato-testo">Kada nenaudoti Chi-kvadrato testo?</h2>
+<p>Kai vienas iš tikėtinų dažnių yra mažesnis negu 5, rekomenduojama arba sutraukti kelias grupes į vieną grupę, arba naudoti Fisher tikslų testą. Fisher tikslus testas po savimi neturi jokio statistinio testo savaime - jis apskaičiuoja tikimybę gauti tokius dažnius, kokius matome. Dėl to atlikdami testą su <code>fisher.test</code> komanda gauname tik p reikšmę:</p>
+<pre><code class="language-r">fisher.test(table(data$dydis,data$Species))
+</code></pre>
+<pre><code>## 
+## 	Fisher's Exact Test for Count Data
+## 
+## data:  table(data$dydis, data$Species)
+## p-value &lt; 2.2e-16
+## alternative hypothesis: two.sided
+</code></pre>
+<p>Taip pat svarbu, jog Chi-kvadrato testas laikosi prielaidos, jog stebėjimai tarpusavyje nėra susiję. Nesunkiai prielaidą galima pažeisti atliekant odontologinį tyrimį. Pavyzdžiui, renkame informaciją apie sugedusius dantis ir tiriame sąsają tarp sugedusių dantų skaičiaus ir danties tipo. Jeigu įtraukiame po kelis dantis iš kiekvieno paciento, mes įtraukiame matavimus, kurie savaime jau yra susiję. Jeigu netyčia įtrauksime pacientą, kuriam sugedo daugiau negu 1 dantis, pažeistume testo prielaidą ir galimai gautume neteisingą rezultatą.</p>
+
+                    </div>
+
+                    
+
+
+
+                    
+                    <div class="article-widget">
+                        
+<div class="post-nav">
+  
+  
+</div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="body-footer">
+                    <p>Vėliausiai atnaujinti 2021-05-11</p>
+
+                    
+
+
+
+
+
+                    
+
+
+
+                </div>
+
+            </article>
+
+            <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+        </main>
+    </div>
+</div>
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Citata</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Kopijuoti
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Parsisiųsti
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.c8812054d5fbbc54489d1801db0a0e44.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
